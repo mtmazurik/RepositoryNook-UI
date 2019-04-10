@@ -17,11 +17,11 @@ export class ConfigComponent implements OnInit {
 
     ngOnInit(): void {
         this.configData = {
-            serverAddress: "http://www.google.com",
+            serverAddress: "http://localhost",
             port: 8902,
             auth0ClientId: "Tl3SnziPkp4qRjRuajZWfrAeMn6Dxwr6",
-            auth0Client2Id: "Ep36WseJFCSnU5IsMdDxJh_JKyhlyKDfw0_epmihC4JroW1SvVtvDa9BHuwDGPMJ",
-            auth0Audience: "enpoint-security.containernooks.com"
+            auth0ClientSecret: "Ep36WseJFCSnU5IsMdDxJh_JKyhlyKDfw0_epmihC4JroW1SvVtvDa9BHuwDGPMJ",
+            auth0Audience: "endpoint-security.containernooks.com"
         };
         // this.configService.getConfigData()
         // .subscribe(data => {
