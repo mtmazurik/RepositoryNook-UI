@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Config } from './config';
 import { ConfigService } from './config.service';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CDK_CONNECTED_OVERLAY_SCROLL_STRATEGY } from '@angular/cdk/overlay/typings/overlay-directives';
 
@@ -11,9 +12,10 @@ import { CDK_CONNECTED_OVERLAY_SCROLL_STRATEGY } from '@angular/cdk/overlay/typi
 export class ConfigComponent implements OnInit {
     configData: Config;
 
-    constructor(private configService: ConfigService){
+    @Output('snackbarMessage')
+    change: EventEmitter<string> = new EventEmitter<string>();
 
-    }
+    constructor(private httpClient: HttpClient, private configService: ConfigService){ } // ctor
 
     ngOnInit(): void {
         this.configData = {
@@ -27,5 +29,10 @@ export class ConfigComponent implements OnInit {
         // .subscribe(data => {
         //     console.log(data);
         // });
+    }
+    ping() : any {
+        this.httpClient.get("http://localhost:8902/admin/ping").subscribe((res)=>{
+            this.change.emit(res.toString());
+        })
     }
 }

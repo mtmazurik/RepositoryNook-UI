@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {MatSnackBar} from "@angular/material";
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,7 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
+  constructor(public snackBar: MatSnackBar) {}
   navItems: any[] = [
     { path: '/home', title: 'Home'},
   ]
@@ -17,4 +19,10 @@ export class AppComponent {
 
   events: string[] = [];
   opened: boolean;
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
 }
