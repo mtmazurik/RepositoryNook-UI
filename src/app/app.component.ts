@@ -8,9 +8,9 @@ import {MatSnackBar} from "@angular/material";
 })
 
 export class AppComponent {
-  constructor(public snackBar: MatSnackBar) {}
   navItems: any[] = [
-    { path: '/home', title: 'Home'},
+    { path: '/home', title: ''},
+    { path: '/repository', title: 'Repository'},
   ]
 
   popupItems: any[] = [
@@ -20,9 +20,4 @@ export class AppComponent {
   events: string[] = [];
   opened: boolean;
 
-  openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, {
-      duration: 2000,
-    });
-  }
 }
