@@ -1,7 +1,7 @@
 # RepositoryNook-UI
 
-ReponookApp was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.6.
-It is a front-end to the RepositoryNook meant to exercise the Microservice REST API and show some storage into the NoSQL repository (Mongo/Atlas)
+RepositoryNook-UI was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.6.
+It is a front-end to the RepositoryNook Microservice meant to exercise the service's REST API and demonstrate data (JSON data) storage into a NoSQL repository (hosted Mongo/Atlas)
 
 ## Development server
 
