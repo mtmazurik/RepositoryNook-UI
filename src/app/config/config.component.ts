@@ -4,6 +4,8 @@ import { ConfigService } from './config.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CDK_CONNECTED_OVERLAY_SCROLL_STRATEGY } from '@angular/cdk/overlay/typings/overlay-directives';
+import { NotificationService } from '../core/services/notification.service';
+import { rendererTypeName } from '@angular/compiler';
 
 @Component({
     templateUrl: './config.component.html',
@@ -12,10 +14,7 @@ import { CDK_CONNECTED_OVERLAY_SCROLL_STRATEGY } from '@angular/cdk/overlay/typi
 export class ConfigComponent implements OnInit {
     configData: Config;
 
-    @Output('snackbarMessage')
-    change: EventEmitter<string> = new EventEmitter<string>();
-
-    constructor(private httpClient: HttpClient, private configService: ConfigService){ } // ctor
+    constructor(private httpClient: HttpClient, private notify: NotificationService, private configService: ConfigService){ } // ctor
 
     ngOnInit(): void {
         this.configData = {
@@ -30,9 +29,14 @@ export class ConfigComponent implements OnInit {
         //     console.log(data);
         // });
     }
-    ping() : any {
-        this.httpClient.get("http://localhost:8902/admin/ping").subscribe((res)=>{
-            this.change.emit(res.toString());
-        })
+
+    ping() : any { // button: ping
+        let uri:string = this.configData.serverAddress + ':' + this.configData.port + '/admin/ping';    // REST API call
+        this.httpClient
+            .get(uri, {responseType: "text"})
+            .subscribe( 
+                respBody =>  this.notify.snackBar.open(respBody),
+                error => this.notify.snackBar.open('Ping error. Check REST URI and port number and retry.')
+            );
     }
-}
+} 

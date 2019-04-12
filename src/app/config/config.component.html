@@ -14,12 +14,14 @@
             </div>
             <div fxLayout="row" fxLayoutGap="14px grid">
                 <mat-form-field fxFlex="100">
-                    <input matInput [(ngModel)]="configData.auth0ClientId" placeholder="Auth0 Client Id">
+                    <input matInput placeholder="Auth0 Client Id" [type]="hide ? 'text' : 'password'" [(ngModel)]="configData.auth0ClientId" >
+                    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </mat-form-field>
             </div>
             <div fxLayout="row" fxLayoutGap="14px grid">
                 <mat-form-field fxFlex="100">
-                    <input matInput [(ngModel)]="configData.auth0ClientSecret" placeholder="Auth0 Client Secret">
+                    <input matInput placeholder="Auth0 Client Secret" [type]="hide ? 'text' : 'password'" [(ngModel)]="configData.auth0ClientSecret" >
+                    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </mat-form-field>
             </div>
             <div fxLayout="row" fxLayoutGap="14px grid">
@@ -29,8 +31,8 @@
             </div>
         </mat-card-content>
         <mat-card-actions align="end"> 
-            <button mat-button (click)="ping()">Cancel</button>
-            <button mat-button>Test</button>
+            <button mat-button>Cancel</button>
+            <button mat-button (click)="ping()">Ping</button>
         </mat-card-actions>
     </mat-card>
 </div>
