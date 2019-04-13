@@ -1,4 +1,4 @@
-export class Configuration {
+export class ConfigurationModel {
     serverAddress: string;
     port: number;
     auth0ClientId: string;

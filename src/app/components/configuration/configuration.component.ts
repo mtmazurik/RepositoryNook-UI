@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Configuration } from './configuration';
+import { ConfigurationModel } from './configurationModel';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CDK_CONNECTED_OVERLAY_SCROLL_STRATEGY } from '@angular/cdk/overlay/typings/overlay-directives';
@@ -11,7 +11,7 @@ import { rendererTypeName } from '@angular/compiler';
     styleUrls: ['./configuration.component.scss']
 })
 export class ConfigComponent implements OnInit {
-    configData: Configuration;
+    configData: ConfigurationModel;
 
     constructor(private httpClient: HttpClient, private notify: NotificationService) { } // ctor
 
@@ -26,6 +26,15 @@ export class ConfigComponent implements OnInit {
     }
 
     ping() : any { // button: ping
+        let uri:string = this.configData.serverAddress + ':' + this.configData.port + '/admin/ping';    // REST API call
+        this.httpClient
+            .get(uri, {responseType: "text"})
+            .subscribe( 
+                respBody =>  this.notify.open(respBody, 'info', 3),
+                error => this.notify.open('Ping error. Check REST URI and port number and retry.', 'error')
+            );
+    }
+    getVersion() : any { // button: getVersion
         let uri:string = this.configData.serverAddress + ':' + this.configData.port + '/admin/ping';    // REST API call
         this.httpClient
             .get(uri, {responseType: "text"})
