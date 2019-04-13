@@ -1,20 +1,19 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Config } from './config';
-import { ConfigService } from './config.service';
+import { Configuration } from './configuration';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CDK_CONNECTED_OVERLAY_SCROLL_STRATEGY } from '@angular/cdk/overlay/typings/overlay-directives';
-import { NotificationService } from '../core/services/notification.service';
+import { NotificationService } from '../../core/services/notification.service';
 import { rendererTypeName } from '@angular/compiler';
 
 @Component({
-    templateUrl: './config.component.html',
-    styleUrls: ['./config.component.scss']
+    templateUrl: './configuration.component.html',
+    styleUrls: ['./configuration.component.scss']
 })
 export class ConfigComponent implements OnInit {
-    configData: Config;
+    configData: Configuration;
 
-    constructor(private httpClient: HttpClient, private notify: NotificationService, private configService: ConfigService){ } // ctor
+    constructor(private httpClient: HttpClient, private notify: NotificationService) { } // ctor
 
     ngOnInit(): void {
         this.configData = {
@@ -24,10 +23,6 @@ export class ConfigComponent implements OnInit {
             auth0ClientSecret: "Ep36WseJFCSnU5IsMdDxJh_JKyhlyKDfw0_epmihC4JroW1SvVtvDa9BHuwDGPMJ",
             auth0Audience: "endpoint-security.containernooks.com"
         };
-        // this.configService.getConfigData()
-        // .subscribe(data => {
-        //     console.log(data);
-        // });
     }
 
     ping() : any { // button: ping

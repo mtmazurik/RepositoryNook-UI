@@ -7,8 +7,8 @@ import { HttpClientModule } from '@angular/common/http'
 import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatFormFieldModule, MatInputModule, MatSnackBarModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppComponent } from './app.component';
-import { ConfigComponent } from './config/config.component';
-import { HomeComponent } from './home/home.component';
+import { ConfigComponent } from './components/configuration/configuration.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
