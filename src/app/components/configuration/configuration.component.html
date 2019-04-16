@@ -6,27 +6,27 @@
         <mat-card-content>
             <div fxLayout="row" fxLayoutGap="14px grid">
                 <mat-form-field fxFlex="70">
-                    <input matInput [(ngModel)]="configData.serverAddress" placeholder="Server Address">
+                    <input matInput [(ngModel)]="configData.serviceAddress" (change)="saveConfig()" placeholder="Server Address">
                 </mat-form-field>
                 <mat-form-field fxFlex="30">
-                    <input matInput [(ngModel)]="configData.port" placeholder="Port">
+                    <input matInput [(ngModel)]="configData.servicePort" (change)="saveConfig()" placeholder="Port">
                 </mat-form-field>
             </div>
             <div fxLayout="row" fxLayoutGap="14px grid">
                 <mat-form-field fxFlex="100">
-                    <input matInput placeholder="Auth0 Client Id" [type]="hide ? 'text' : 'password'" [(ngModel)]="configData.auth0ClientId" >
+                    <input matInput placeholder="Auth0 Client Id" [type]="hide ? 'text' : 'password'" [(ngModel)]="configData.auth0ClientId" (change)="saveConfig()" >
                     <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </mat-form-field>
             </div>
             <div fxLayout="row" fxLayoutGap="14px grid">
                 <mat-form-field fxFlex="100">
-                    <input matInput placeholder="Auth0 Client Secret" [type]="hide ? 'text' : 'password'" [(ngModel)]="configData.auth0ClientSecret" >
+                    <input matInput placeholder="Auth0 Client Secret" [type]="hide ? 'text' : 'password'" [(ngModel)]="configData.auth0ClientSecret" (change)="saveConfig()" >
                     <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </mat-form-field>
             </div>
             <div fxLayout="row" fxLayoutGap="14px grid">
                 <mat-form-field fxFlex="100">
-                    <input matInput [(ngModel)]="configData.auth0Audience" placeholder="Auth0 Audience">
+                    <input matInput [(ngModel)]="configData.auth0Audience" placeholder="Auth0 Audience" (change)="saveConfig()">
                 </mat-form-field>
             </div>
         </mat-card-content>

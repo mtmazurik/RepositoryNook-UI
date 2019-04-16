@@ -3,7 +3,13 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: true
+  production: false,
+  serviceAddress: "http://localhost",
+  servicePort: 8902,
+  auth0ClientId: "Tl3SnziPkp4qRjRuajZWfrAeMn6Dxwr6",
+  auth0ClientSecret: "Ep36WseJFCSnU5IsMdDxJh_JKyhlyKDfw0_epmihC4JroW1SvVtvDa9BHuwDGPMJ",
+  auth0Audience: "endpoint-security.containernooks.com",
+  auth0GrantType: "client_credentials"
 };
 
 /*
