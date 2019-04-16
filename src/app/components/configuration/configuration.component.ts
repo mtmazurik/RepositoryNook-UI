@@ -1,10 +1,11 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { ConfigurationModel } from './configurationModel';
-import { HttpClient } from '@angular/common/http';
+import { ConfigurationModel } from './configuration.model';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CDK_CONNECTED_OVERLAY_SCROLL_STRATEGY } from '@angular/cdk/overlay/typings/overlay-directives';
-import { NotificationService } from '../../core/services/notification.service';
 import { rendererTypeName } from '@angular/compiler';
+import { NotificationService } from '../../core/services/notification.service';
+import { AuthenticationService } from '../../core/services/authentication.service'
 
 @Component({
     templateUrl: './configuration.component.html',
@@ -13,7 +14,7 @@ import { rendererTypeName } from '@angular/compiler';
 export class ConfigComponent implements OnInit {
     configData: ConfigurationModel;
 
-    constructor(private httpClient: HttpClient, private notify: NotificationService) { } // ctor
+    constructor(private httpClient: HttpClient, public auth:AuthenticationService, private notify: NotificationService) { } // ctor
 
     ngOnInit(): void {
         this.configData = {
@@ -25,22 +26,25 @@ export class ConfigComponent implements OnInit {
         };
     }
 
-    ping() : any { // button: ping
-        let uri:string = this.configData.serverAddress + ':' + this.configData.port + '/admin/ping';    // REST API call
+    ping() : any { // button: ping (not authenticated)
+        let uri:string = this.configData.serverAddress + ':' + this.configData.port + '/admin/ping';   
         this.httpClient
             .get(uri, {responseType: "text"})
             .subscribe( 
-                respBody =>  this.notify.open(respBody, 'info', 3),
-                error => this.notify.open('Ping error. Check REST URI and port number and retry.', 'error')
+                respBody => this.notify.open(respBody, 'info', 3),
+                error => this.notify.open('GET Ping error. Check REST URI and port number and retry.', 'error')
             );
     }
-    getVersion() : any { // button: getVersion
-        let uri:string = this.configData.serverAddress + ':' + this.configData.port + '/admin/ping';    // REST API call
+    getVersion() : any { // button: GET Version (authenticated)
+        let uri:string = this.configData.serverAddress + ':' + this.configData.port + '/admin/version';   
         this.httpClient
-            .get(uri, {responseType: "text"})
+            .get(uri, { responseType: "text", 
+                        headers: new HttpHeaders()
+                            .set("Authorization", `Bearer ${this.auth.accessToken}`)
+                      })
             .subscribe( 
-                respBody =>  this.notify.snackBar.open(respBody),
-                error => this.notify.snackBar.open('Ping error. Check REST URI and port number and retry.')
+                respBody => this.notify.open(respBody,'info',3),
+                error => this.notify.open('GET Version error. Could be AUTH issue. Check AUTH ClientId and URI:Port and retry.', 'error')
             );
     }
 } 

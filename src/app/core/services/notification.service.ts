@@ -13,9 +13,11 @@ export class NotificationService {
     private zone: NgZone    
   ) { }
   
-  public open(message : string = "Default Message.", severity : string = 'info', durationSeconds: number = 3, action : string = '') {  // severity: info, warn, error
-    let durationMilliseconds : number = durationSeconds * 1000;
+  public open(message : string = "Default Message.", severity : string = 'info', durationSeconds: number = 3, action : string = '') {  
+
+    var durationMilliseconds : number = durationSeconds * 1000;
     var backgroundSeverityColor : string;
+
     switch(severity) {
       case 'info': {
           backgroundSeverityColor = "info-snackbar";

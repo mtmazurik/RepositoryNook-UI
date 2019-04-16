@@ -4,8 +4,10 @@ import { ConfigComponent } from './components/configuration/configuration.compon
 import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
+  { path: '', component: HomeComponent},
   { path: 'home', component: HomeComponent },
-  { path: 'config', component: ConfigComponent }
+  { path: 'config', component: ConfigComponent },
+  { path: '**', redirectTo: ''}
 ];
 
 @NgModule({
