@@ -5,17 +5,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
 import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatFormFieldModule, MatInputModule, MatSnackBarModule } from '@angular/material';
+import { MatSelectModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppComponent } from './app.component';
 import { ConfigComponent } from './components/configuration/configuration.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthenticationService } from './core/services/authentication.service';
+import { RepositoryComponent } from './components/repository/repository.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ConfigComponent
+    ConfigComponent,
+    RepositoryComponent
   ],
   imports: [
     AppRoutingModule,
@@ -33,7 +36,8 @@ import { AuthenticationService } from './core/services/authentication.service';
     MatListModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatSelectModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA], // CUSTOM_ELEMENTS_SCHEMA allows the templateUrl to work
   providers: [

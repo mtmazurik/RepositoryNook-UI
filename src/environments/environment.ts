@@ -1,3 +1,5 @@
+import { DBConnection } from 'auth0-js';
+
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
@@ -9,7 +11,9 @@ export const environment = {
   auth0ClientId: "Tl3SnziPkp4qRjRuajZWfrAeMn6Dxwr6",
   auth0ClientSecret: "Ep36WseJFCSnU5IsMdDxJh_JKyhlyKDfw0_epmihC4JroW1SvVtvDa9BHuwDGPMJ",
   auth0Audience: "endpoint-security.containernooks.com",
-  auth0GrantType: "client_credentials"
+  auth0GrantType: "client_credentials",
+  database: "flight-db",
+  collection: "flights"
 };
 
 /*

@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
     { path: '/repository', title: 'Repository'},
   ]
 
-  popupItems: any[] = [
+  moreEllipsisItems: any[] = [
     { path: '/config' }
   ]
 
