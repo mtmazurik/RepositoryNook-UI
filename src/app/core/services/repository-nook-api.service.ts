@@ -4,12 +4,10 @@ import { NotificationService } from '../../core/services/notification.service';
 import { AuthenticationService } from '../../core/services/authentication.service';
 import { ConfigurationService } from '../../core/services/configuration.service';
 import { ConfigurationModel } from '../models/configuration.model';
-import { RepositoryModel } from '../models/repository.model';
 import { IDatabase } from '../models/api/database';
 import { ICollection } from '../models/api/collection';
 import { IResponse } from '../models/api/response';
 import { Observable } from 'rxjs';
-import { MatCalendarBody } from '@angular/material';
 
 @Injectable({
   providedIn: 'root'
@@ -18,11 +16,9 @@ import { MatCalendarBody } from '@angular/material';
 export class RepositoryNookAPIService {
 
   private _environmentSettings: ConfigurationModel;
-  private _repositorySettings: RepositoryModel;
 
   constructor(public httpClient: HttpClient, public auth:AuthenticationService, public notify:NotificationService, public config:ConfigurationService) { 
     this._environmentSettings =  config.environmentSettings;
-    this._repositorySettings = config.repositorySettings;
     if (!this.auth.isAuthenticated()){
       this.auth.renewToken();
     }
@@ -56,7 +52,8 @@ export class RepositoryNookAPIService {
   }
 
   GetCollections() : Observable<any> {
-    let uri: string = this.baseURI() + "/" + this._repositorySettings.database;
+    var repositorySettings = this.config.repositorySettings;
+    let uri: string = this.baseURI() + "/" + repositorySettings.database;
     this.collections = [];
     this.httpClient
       .get(uri, { 
@@ -85,7 +82,7 @@ export class RepositoryNookAPIService {
           .get(uri, {responseType: "text"})
           .subscribe( 
               respBody => this.notify.open(respBody, 'info', 3),
-              error => this.notify.open('GET Ping error. Check REST URI and port number and retry.', 'error')
+              error => this.notify.open('GET Ping error. Check REST URI and port number and  retry.', 'error')
           );
   }
 
