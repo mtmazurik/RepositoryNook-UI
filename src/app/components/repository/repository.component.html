@@ -6,20 +6,23 @@
       <mat-card-content>
           <div fxLayout="column" fxLayoutGap="14px grid">
               <mat-form-field fxFlex="70">
-                  <mat-select name="databaseSelect" [(ngModel)]="repositoryData.database" placeholder="database">
+                  <mat-select name="databaseSelect" placeholder="database" [(ngModel)]="repositorySettings.database" (change)="onChange()">
                     <mat-option *ngFor="let database of databases" [value]="database.name">
                       {{database.name}}
                     </mat-option>
                   </mat-select>
               </mat-form-field>
               <mat-form-field fxFlex="70">
-                <input matInput placeholder="Collection" [(ngModel)]="repositoryData.collection" >
+                  <mat-select name="collectionSelect" placeholder="collection" [(ngModel)]="repositorySettings.collection" (change)="onChange()">
+                      <mat-option *ngFor="let collection of collections" [value]="collection.name">
+                        {{collection.name}}
+                      </mat-option>
+                    </mat-select>
             </mat-form-field>
           </div>
       </mat-card-content>
       <mat-card-actions align="end"> 
-          <button mat-raised-button [routerLink]="['/home']">Cancel</button>
-          <button mat-raised-button (click)="ok()">OK</button>
+          <button mat-raised-button [routerLink]="['/home']" (click)="onOKClick()">OK</button>
       </mat-card-actions>
   </mat-card>
 </div>

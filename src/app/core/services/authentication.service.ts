@@ -30,7 +30,7 @@ export class AuthenticationService {
     return this._accessToken;
   }
   private auth0Response : Auth0ResponseModel = null;
-  public renewTokens(): void {
+  public renewToken(): void {
       let uri:string = 'https://cloudcomputingassociates.auth0.com/oauth/token';   
       this.http
           .post(uri, {"client_id":"TI3SnziPkp4qRjRuajZWfrAeMn6Dxwr6","client_secret":"Ep36WseJFCSnU5IsMdDxJh_JKyhIyKDfw0_epmihC4JroW1SvVtvDa9BHuwDGPMJ","audience":"endpoint-security.containernooks.com","grant_type":"client_credentials"},

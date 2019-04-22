@@ -23,12 +23,9 @@ export class AppComponent implements OnInit {
   opened: boolean;
 
 
-  constructor(public auth: AuthenticationService) {
+  constructor() {
   }
 
   ngOnInit() {
-    if (!this.auth.isAuthenticated()){
-      this.auth.renewTokens();
     }
-  }
 }

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigurationService } from '../../core/services/configuration.service';
 import { RepositoryModel } from '../../core/models/repository.model';
-import { IDatabase } from 'src/app/core/models/api/database';
 import { RepositoryNookAPIService } from 'src/app/core/services/repository-nook-api.service';
 import { appInitializerFactory } from '@angular/platform-browser/src/browser/server-transition';
+import { IDatabase } from 'src/app/core/models/api/database';
+import { ICollection } from 'src/app/core/models/api/collection';
 
 @Component({
   selector: 'app-repository',
@@ -12,18 +13,30 @@ import { appInitializerFactory } from '@angular/platform-browser/src/browser/ser
 })
 export class RepositoryComponent implements OnInit {
 
-  repositoryData: RepositoryModel;
+  _config: ConfigurationService;
+  repositorySettings: RepositoryModel;
   databases: IDatabase[];
+  collections: ICollection[];
 
   constructor(public config:ConfigurationService, public api:RepositoryNookAPIService) { 
-    this.repositoryData = config.repositorySettings;
+    this._config = config;
   }
 
   ngOnInit() {
-    this.api.GetDatabases()
-      .subscribe((databasesData: IDatabase[]) => {
-        this.databases = databasesData;
-       });
-  }
+    this.repositorySettings = this._config.repositorySettings;
 
+    this.api.GetDatabases()
+      .subscribe((returnDatabases: IDatabase[]) => {
+        this.databases = returnDatabases;
+       });
+
+    this.api.GetCollections()
+      .subscribe((collections: ICollection[]) => {
+        this.collections = collections;
+       });
+
+  }
+  onChange() {
+    this._config.repositorySettings = this.repositorySettings;
+  }
 }
