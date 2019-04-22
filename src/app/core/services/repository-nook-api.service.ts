@@ -37,12 +37,13 @@ export class RepositoryNookAPIService {
                       .set("Authorization", `Bearer ${this.auth.accessToken}`)
       })
       .subscribe( body => {
-        this.response = JSON.parse(body) as IResponse;
-        for(var i=0; i < this.response.data.length; i++) {
-          this.databases.push( JSON.parse(this.response.data[i].toString()) as IDatabase);
-        }
-  });
-
+                    this.response = JSON.parse(body) as IResponse;
+                    for(var i=0; i < this.response.data.length; i++) {
+                      this.databases.push( JSON.parse(this.response.data[i].toString()) as IDatabase);
+                    }
+                  },
+                  error => this.notify.open('GET Databases error. Check Configuration/Settings and retry.', 'error')
+                );
     const databasesObservable = new Observable<IDatabase[]>(observer => {
         setTimeout(() => {
             observer.next(this.databases);
@@ -62,12 +63,13 @@ export class RepositoryNookAPIService {
                       .set("Authorization", `Bearer ${this.auth.accessToken}`)
       })
       .subscribe( body => {
-            this.response = body as IResponse;
-            for(var i=0; i < this.response.data.length; i++) {
-              this.collections.push( JSON.parse(this.response.data[i].toString()) as ICollection)
-            }
-      });
-
+                    this.response = body as IResponse;
+                    for(var i=0; i < this.response.data.length; i++) {
+                      this.collections.push( JSON.parse(this.response.data[i].toString()) as ICollection)
+                    }
+                  },
+                  error => this.notify.open('GET Collections error. Check Configuration/Settings and retry.', 'error')
+            );
     const collectionsObservable = new Observable(observer => {
         setTimeout(() => {
             observer.next(this.collections);
