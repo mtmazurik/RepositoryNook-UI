@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NotificationService } from '../../core/services/notification.service';
 import { AuthenticationService } from '../../core/services/authentication.service';
 import { ConfigurationService } from '../../core/services/configuration.service';
-import { ConfigurationModel } from '../models/configuration.model';
 import { IDatabase } from '../models/api/database';
 import { ICollection } from '../models/api/collection';
 import { IResponse } from '../models/api/response';
@@ -15,13 +14,7 @@ import { Observable } from 'rxjs';
 
 export class RepositoryNookAPIService {
 
-  private _environmentSettings: ConfigurationModel;
-
-  constructor(public httpClient: HttpClient, public auth:AuthenticationService, public notify:NotificationService, public config:ConfigurationService) { 
-    this._environmentSettings =  config.environmentSettings;
-    if (!this.auth.isAuthenticated()){
-      this.auth.renewToken();
-    }
+  constructor(public httpClient: HttpClient, public auth:AuthenticationService, public config:ConfigurationService, public notify:NotificationService) { 
   }
 
   response:IResponse;
@@ -34,7 +27,7 @@ export class RepositoryNookAPIService {
     this.httpClient
       .get(uri, { responseType: 'text', 
                   headers: new HttpHeaders()
-                      .set("Authorization", `Bearer ${this.auth.accessToken}`)
+                      .set("Authorization", `Bearer ${this.auth.token}`)
       })
       .subscribe( body => {
                     this.response = JSON.parse(body) as IResponse;
@@ -42,7 +35,7 @@ export class RepositoryNookAPIService {
                       this.databases.push( JSON.parse(this.response.data[i].toString()) as IDatabase);
                     }
                   },
-                  error => this.notify.open('GET Databases error. Check Configuration/Settings and retry.', 'error')
+                  //error => this.notify.open('GET Databases error. Check Configuration/Settings and retry.', 'error')
                 );
     const databasesObservable = new Observable<IDatabase[]>(observer => {
         setTimeout(() => {
@@ -53,14 +46,13 @@ export class RepositoryNookAPIService {
   }
 
   GetCollections() : Observable<any> {
-    var repositorySettings = this.config.repositorySettings;
-    let uri: string = this.baseURI() + "/" + repositorySettings.database;
+    let uri: string = this.baseURI() + "/" + this.config.settings.database;
     this.collections = [];
     this.httpClient
       .get(uri, { 
                   responseType: 'json', 
                   headers: new HttpHeaders()
-                      .set("Authorization", `Bearer ${this.auth.accessToken}`)
+                      .set("Authorization", `Bearer ${this.auth.token}`)
       })
       .subscribe( body => {
                     this.response = body as IResponse;
@@ -89,11 +81,11 @@ export class RepositoryNookAPIService {
   }
 
   GetVersion(){ // Authenticated
-      let uri:string = this._environmentSettings.serviceAddress + ':' + this._environmentSettings.servicePort + '/admin/version';   
+      let uri:string = this.config.settings.serviceAddress + ':' + this.config.settings.servicePort + '/admin/version';   
       this.httpClient
           .get(uri, { responseType: "text", 
                       headers: new HttpHeaders()
-                          .set("Authorization", `Bearer ${this.auth.accessToken}`)
+                          .set("Authorization", `Bearer ${this.auth.token}`)
                     })
           .subscribe( 
               respBody => this.notify.open(respBody,'info',3),
@@ -102,6 +94,6 @@ export class RepositoryNookAPIService {
   }
 
   private baseURI() {
-    return this._environmentSettings.serviceAddress + ':' + this._environmentSettings.servicePort;
+    return this.config.settings.serviceAddress + ':' + this.config.settings.servicePort;
   }
 }

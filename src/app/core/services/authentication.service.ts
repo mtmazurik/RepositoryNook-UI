@@ -16,43 +16,36 @@ interface Auth0ResponseModel {
 @Injectable()
 export class AuthenticationService {
 
-  private _accessToken: string;
+  private _authToken: string;
   private _expiresAt: number;
 
   userProfile: any;
 
   constructor(public router: Router, private http: HttpClient, public notify: NotificationService) {
-    this._accessToken = '';
+    this._authToken = '';
     this._expiresAt = 0;
   }
 
-  get accessToken(): string { // public property
-    return this._accessToken;
+  get token(): string { // public property
+    return this._authToken;
   }
+
   private auth0Response : Auth0ResponseModel = null;
-  public renewToken(): void {
+  public refreshToken(): string {
       let uri:string = 'https://cloudcomputingassociates.auth0.com/oauth/token';   
       this.http
           .post(uri, {"client_id":"TI3SnziPkp4qRjRuajZWfrAeMn6Dxwr6","client_secret":"Ep36WseJFCSnU5IsMdDxJh_JKyhIyKDfw0_epmihC4JroW1SvVtvDa9BHuwDGPMJ","audience":"endpoint-security.containernooks.com","grant_type":"client_credentials"},
                 { responseType: "json" })
           .subscribe( ( resp : Auth0ResponseModel) => { 
                         this.auth0Response = resp;
-                        this.setAccessToken(this.auth0Response.access_token);
+                        this._authToken = this.auth0Response.access_token;
                       },
                       error => this.notify.open("error")
                     ) 
       var date = new Date();
       this._expiresAt = date.setDate(date.getDate() + 1); // value always returned of 86400 == 24 hours == 1 day
+      return this._authToken;
   }
-  private setAccessToken(accessToken:string)
-  {
-    this._accessToken = accessToken;
-  }
-  public isAuthenticated(): boolean {
-    var date = new Date();
-    return date.getDate() < this._expiresAt;
-  }
-
 }
 
 

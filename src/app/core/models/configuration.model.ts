@@ -5,4 +5,6 @@ export class ConfigurationModel {
     auth0ClientSecret: string;
     auth0Audience: string;
     auth0GrantType: string;
+    database: string;
+    collection: string;
 }

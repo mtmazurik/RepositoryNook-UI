@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {MatSnackBar} from "@angular/material";
-import { AuthenticationService } from './core/services/authentication.service';
 
 @Component({
   selector: 'app-root',

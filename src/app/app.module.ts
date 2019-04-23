@@ -10,8 +10,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppComponent } from './app.component';
 import { ConfigComponent } from './components/configuration/configuration.component';
 import { HomeComponent } from './components/home/home.component';
-import { AuthenticationService } from './core/services/authentication.service';
 import { RepositoryComponent } from './components/repository/repository.component';
+import { AuthenticationService } from './core/services/authentication.service';
+import { ConfigurationService } from './core/services/configuration.service';
+import { RepositoryNookAPIService } from './core/services/repository-nook-api.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { RepositoryComponent } from './components/repository/repository.componen
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA], // CUSTOM_ELEMENTS_SCHEMA allows the templateUrl to work
   providers: [
-    AuthenticationService
+    AuthenticationService,
+    ConfigurationService,
+    RepositoryNookAPIService
   ],
   bootstrap: [AppComponent]
 })

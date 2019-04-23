@@ -1,7 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
 import { Subject } from 'rxjs';
 import { MatSnackBar } from '@angular/material';
-import { BrowserStack } from 'protractor/built/driverProviders';
 
 @Injectable({  providedIn: 'root' })
 export class NotificationService {
