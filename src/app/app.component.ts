@@ -9,8 +9,8 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
 
   navItems: any[] = [
-    { path: '/home', title: ''},
     { path: '/repository', title: 'Repository'},
+    { path: '/home', title: 'Search'},
   ]
 
   moreEllipsisItems: any[] = [
