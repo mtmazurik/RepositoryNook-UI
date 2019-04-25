@@ -10,7 +10,7 @@ export class AppComponent implements OnInit {
 
   navItems: any[] = [
     { path: '/repository', title: 'Repository'},
-    { path: '/home', title: 'Search'},
+    { path: '/search', title: 'Search'},
   ]
 
   moreEllipsisItems: any[] = [

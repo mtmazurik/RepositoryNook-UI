@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { RepositoryNookAPIService } from 'src/app/core/services/repository-nook-api.service';
 import { ConfigurationService } from '../../core/services/configuration.service';
 import { ConfigurationModel } from 'src/app/core/models/configuration.model';
-import { NotificationService } from '../../core/services/notification.service';
 import { IDatabase } from 'src/app/core/models/api/database';
 import { ICollection } from 'src/app/core/models/api/collection';
-import { AuthenticationService } from '../../core/services/authentication.service';
+
 
 @Component({
   templateUrl: './repository.component.html',
@@ -17,7 +16,7 @@ export class RepositoryComponent implements OnInit {
   collections: ICollection[];
   settings: ConfigurationModel;
 
-  constructor(public configSvc:ConfigurationService, public api:RepositoryNookAPIService, public notify:NotificationService, public authSvc: AuthenticationService) { 
+  constructor(public configSvc:ConfigurationService, public api:RepositoryNookAPIService) { 
   }
 
   ngOnInit() {

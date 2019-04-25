@@ -6,6 +6,7 @@ import { ConfigurationService } from '../../core/services/configuration.service'
 import { IDatabase } from '../models/api/database';
 import { ICollection } from '../models/api/collection';
 import { IResponse } from '../models/api/response';
+import { IRepository, NameValuePair } from '../models/api/repository';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -20,6 +21,51 @@ export class RepositoryNookAPIService {
   response:IResponse;
   databases:IDatabase[];
   collections: ICollection[];
+  repositoryItems: IRepository[];
+
+  GetAll() : Observable<IRepository[]> {
+    let uri: string= this.baseURI() + "/" + this.config.settings.database + "/" + this.config.settings.collection + "/repository"; // GET all repository objects given database/collection
+    this.repositoryItems = [];
+    this.httpClient
+    .get(uri, { responseType: 'text', 
+                headers: new HttpHeaders()
+                    .set("Authorization", `Bearer ${this.auth.token}`)
+    })
+    .subscribe( body => {
+                  this.response = JSON.parse(body) as IResponse;
+                  for(var i=0; i < 10 ; i++) { // this.response.data.length
+                    var repoItem: IRepository =  { _id: "xxxxx-xxxxxx"
+                                                  , keyName: "keyName"
+                                                  , keyValue: "keyValue"
+                                                  , tags: [{ "name": "", "value": ""}]
+                                                  , createdDate: ""
+                                                  , createdBy: ""
+                                                  , modifiedDate: ""
+                                                  , modifiedBy: ""
+                                                  , app: ""
+                                                  , repository: ""
+                                                  , collection: ""
+                                                  , validate: false
+                                                  , schemaUri: ""
+                                                  , data: ""
+                                                 } };
+                    // repoItem._id = this.response.data[i]["_id"];
+                    // this.notify.open(this.response.data[i]["_id"], "info", 10000);
+                    // i = this.response.data.length; //exit for loop
+                    // repoItem.keyName = this.response.data[i]["keyName"];
+                    // repoItem.keyValue = this.response.data[i]["keyValue"];
+
+                    this.repositoryItems.push( repoItem );
+                  },
+                  error => this.notify.open('GET all repository items failed. Check settings and retry.', 'error')
+              );
+    const repositoryItemsObservable = new Observable<IRepository[]>(observer => {
+        setTimeout(() => {
+            observer.next(this.repositoryItems);
+        }, 1000);
+    });
+    return repositoryItemsObservable;
+  }
 
   GetDatabases() : Observable<IDatabase[]> {
     let uri: string = this.baseURI();
@@ -35,7 +81,7 @@ export class RepositoryNookAPIService {
                       this.databases.push( JSON.parse(this.response.data[i].toString()) as IDatabase);
                     }
                   },
-                  //error => this.notify.open('GET Databases error. Check Configuration/Settings and retry.', 'error')
+                  error => this.notify.open('GET Databases error. Check Configuration/Settings and retry.', 'error')
                 );
     const databasesObservable = new Observable<IDatabase[]>(observer => {
         setTimeout(() => {

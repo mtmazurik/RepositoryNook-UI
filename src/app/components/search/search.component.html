@@ -1,0 +1,36 @@
+<div fxLayout="row" fxLayoutAlign="center center">
+    <mat-card fxFlex.xs="100" fxFlex.sm="80" fxFlex.gt-sm="60">
+        <mat-card-header>
+            <mat-card-title>Search</mat-card-title>
+            <mat-card-subtitle>Repository: {{repositorySetting}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+              <div fxLayout="row" fxLayoutGap="14px grid">
+                  <mat-form-field fxFlex="100">
+                      <input matInput placeholder="search  (example: * )">
+                  </mat-form-field>
+              </div>
+        </mat-card-content>
+        <mat-card-actions align="end"> 
+            <button mat-raised-button (click)="onSearchClick()">Search</button>
+        </mat-card-actions>
+    </mat-card>
+    
+    <table mat-table [dataSource]="repositoryItems" class="mat-elevation-z8">
+      <ng-container matColumnDef="_id">
+        <th mat-header-cell *matHeaderCellDef>_Id</th>
+        <td mat-cell *matCellDef="let repositoryItem"> {{repositoryItem._id}}</td>
+      </ng-container>
+      <ng-container matColumnDef="keyName">
+        <th mat-header-cell *matHeaderCellDef>_id</th>
+        <td mat-cell *matCellDef="let repositoryItem"> {{repositoryItem.keyName}}</td>
+      </ng-container>
+      <ng-container matColumnDef="keyValue">
+        <th mat-header-cell *matHeaderCellDef>_Id</th>
+        <td mat-cell *matCellDef="let repositoryItem"> {{repositoryItem.keyValue}}</td>
+      </ng-container>
+        
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>

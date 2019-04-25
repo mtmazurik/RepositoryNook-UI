@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
 import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatFormFieldModule, MatInputModule, MatSnackBarModule } from '@angular/material';
 import { MatSelectModule } from '@angular/material';
+import { MatTableModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppComponent } from './app.component';
 import { ConfigComponent } from './components/configuration/configuration.component';
@@ -14,13 +15,15 @@ import { RepositoryComponent } from './components/repository/repository.componen
 import { AuthenticationService } from './core/services/authentication.service';
 import { ConfigurationService } from './core/services/configuration.service';
 import { RepositoryNookAPIService } from './core/services/repository-nook-api.service';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ConfigComponent,
-    RepositoryComponent
+    RepositoryComponent,
+    SearchComponent
   ],
   imports: [
     AppRoutingModule,
@@ -39,7 +42,22 @@ import { RepositoryNookAPIService } from './core/services/repository-nook-api.se
     MatFormFieldModule,
     MatInputModule,
     MatSnackBarModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTableModule
+  ],
+  exports: [
+    MatButtonModule,
+    MatMenuModule,
+    MatCardModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatListModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSnackBarModule,
+    MatSelectModule,
+    MatTableModule 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA], // CUSTOM_ELEMENTS_SCHEMA allows the templateUrl to work
   providers: [
