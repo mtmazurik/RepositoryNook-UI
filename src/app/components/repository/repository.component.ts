@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { APIRepositoryNookService } from 'src/app/core/services/api-repository-nook.service';
 import { ConfigurationService } from '../../core/services/configuration.service';
 import { ConfigurationModel } from 'src/app/core/models/configuration.model';
-import { IDatabase } from 'src/app/core/models/api/database';
-import { ICollection } from 'src/app/core/models/api/collection';
+import { Database } from 'src/app/core/models/api/database';
+import { Collection } from 'src/app/core/models/api/collection';
 
 
 @Component({
@@ -12,8 +12,8 @@ import { ICollection } from 'src/app/core/models/api/collection';
 })
 export class RepositoryComponent implements OnInit {
 
-  databases: IDatabase[];
-  collections: ICollection[];
+  databases: Database[];
+  collections: Collection[];
   settings: ConfigurationModel;
 
   constructor(public configSvc:ConfigurationService, public api:APIRepositoryNookService) { 
@@ -22,11 +22,11 @@ export class RepositoryComponent implements OnInit {
   ngOnInit() {
     this.settings = this.configSvc.settings;
     this.api.GetDatabases()
-      .subscribe((returnDatabases: IDatabase[]) => {
+      .subscribe((returnDatabases: Database[]) => {
         this.databases = returnDatabases;
        });
     this.api.GetCollections()
-      .subscribe((collections: ICollection[]) => {
+      .subscribe((collections: Collection[]) => {
         this.collections = collections;
        });
   }
@@ -35,7 +35,7 @@ export class RepositoryComponent implements OnInit {
     this.configSvc.settings = this.settings;
     this.collections = null;
     this.api.GetCollections()
-      .subscribe((collections: ICollection[]) => {
+      .subscribe((collections: Collection[]) => {
         this.collections = collections;
       });
   }

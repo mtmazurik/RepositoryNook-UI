@@ -3,10 +3,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NotificationService } from './notification.service';
 import { AuthenticationService } from './authentication.service';
 import { ConfigurationService } from './configuration.service';
-import { IDatabase } from '../models/api/database';
-import { ICollection } from '../models/api/collection';
-import { IResponse } from '../models/api/response';
-import { IRepository, NameValuePair } from '../models/api/repository';
+import { Database } from '../models/api/database';
+import { Collection } from '../models/api/collection';
+import { Response } from '../models/api/response';
+import { Repository, NameValuePair } from '../models/api/repository';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -18,12 +18,12 @@ export class APIRepositoryNookService {
   constructor(public httpClient: HttpClient, public auth:AuthenticationService, public config:ConfigurationService, public notify:NotificationService) { 
   }
 
-  response:IResponse;
-  databases:IDatabase[];
-  collections: ICollection[];
-  repositoryItems: IRepository[];
+  response:Response;
+  databases:Database[];
+  collections: Collection[];
+  repositoryItems: Repository[];
 
-  GetAll() : Observable<IRepository[]> {
+  GetAll() : Observable<Repository[]> {
     let uri: string= this.baseURI() + "/" + this.config.settings.database + "/" + this.config.settings.collection + "/repository"; // GET all repository objects given database/collection
     this.repositoryItems = [];
     this.httpClient
@@ -32,9 +32,9 @@ export class APIRepositoryNookService {
                     .set("Authorization", `Bearer ${this.auth.token}`)
     })
     .subscribe( body => {
-                  this.response = JSON.parse(body) as IResponse;
+                  this.response = JSON.parse(body) as Response;
                   for(var i=0; i < 10 ; i++) { // this.response.data.length
-                    var repoItem: IRepository =  { _id: "xxxxx-xxxxxx"
+                    var repoItem: Repository =  { _id: "xxxxx-xxxxxx"
                                                   , keyName: "keyName"
                                                   , keyValue: "keyValue"
                                                   , tags: [{ "name": "", "value": ""}]
@@ -59,7 +59,7 @@ export class APIRepositoryNookService {
                   },
                   error => this.notify.open('GET all repository items failed. Check settings and retry.', 'error')
               );
-    const repositoryItemsObservable = new Observable<IRepository[]>(observer => {
+    const repositoryItemsObservable = new Observable<Repository[]>(observer => {
         setTimeout(() => {
             observer.next(this.repositoryItems);
         }, 1000);
@@ -67,7 +67,7 @@ export class APIRepositoryNookService {
     return repositoryItemsObservable;
   }
 
-  GetDatabases() : Observable<IDatabase[]> {
+  GetDatabases() : Observable<Database[]> {
     let uri: string = this.baseURI();
     this.databases = [];
     this.httpClient
@@ -76,14 +76,14 @@ export class APIRepositoryNookService {
                       .set("Authorization", `Bearer ${this.auth.token}`)
       })
       .subscribe( body => {
-                    this.response = JSON.parse(body) as IResponse;
+                    this.response = JSON.parse(body) as Response;
                     for(var i=0; i < this.response.data.length; i++) {
-                      this.databases.push( JSON.parse(this.response.data[i].toString()) as IDatabase);
+                      this.databases.push( JSON.parse(this.response.data[i].toString()) as Database);
                     }
                   },
                   error => this.notify.open('GET Databases error. Check Configuration/Settings and retry.', 'error')
                 );
-    const databasesObservable = new Observable<IDatabase[]>(observer => {
+    const databasesObservable = new Observable<Database[]>(observer => {
         setTimeout(() => {
             observer.next(this.databases);
         }, 1000);
@@ -101,9 +101,9 @@ export class APIRepositoryNookService {
                       .set("Authorization", `Bearer ${this.auth.token}`)
       })
       .subscribe( body => {
-                    this.response = body as IResponse;
+                    this.response = body as Response;
                     for(var i=0; i < this.response.data.length; i++) {
-                      this.collections.push( JSON.parse(this.response.data[i].toString()) as ICollection)
+                      this.collections.push( JSON.parse(this.response.data[i].toString()) as Collection)
                     }
                   },
                   error => this.notify.open('GET Collections error. Check Configuration/Settings and retry.', 'error')
