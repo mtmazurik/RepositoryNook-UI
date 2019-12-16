@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RepositoryNookAPIService } from 'src/app/core/services/repository-nook-api.service';
+import { APIRepositoryNookService } from 'src/app/core/services/api-repository-nook.service';
 import { ConfigurationService } from '../../core/services/configuration.service';
 import { ConfigurationModel } from 'src/app/core/models/configuration.model';
 import { IDatabase } from 'src/app/core/models/api/database';
@@ -16,7 +16,7 @@ export class RepositoryComponent implements OnInit {
   collections: ICollection[];
   settings: ConfigurationModel;
 
-  constructor(public configSvc:ConfigurationService, public api:RepositoryNookAPIService) { 
+  constructor(public configSvc:ConfigurationService, public api:APIRepositoryNookService) { 
   }
 
   ngOnInit() {

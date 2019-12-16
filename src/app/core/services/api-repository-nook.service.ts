@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { NotificationService } from '../../core/services/notification.service';
-import { AuthenticationService } from '../../core/services/authentication.service';
-import { ConfigurationService } from '../../core/services/configuration.service';
+import { NotificationService } from './notification.service';
+import { AuthenticationService } from './authentication.service';
+import { ConfigurationService } from './configuration.service';
 import { IDatabase } from '../models/api/database';
 import { ICollection } from '../models/api/collection';
 import { IResponse } from '../models/api/response';
@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 
-export class RepositoryNookAPIService {
+export class APIRepositoryNookService {
 
   constructor(public httpClient: HttpClient, public auth:AuthenticationService, public config:ConfigurationService, public notify:NotificationService) { 
   }

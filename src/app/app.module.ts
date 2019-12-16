@@ -14,7 +14,7 @@ import { HomeComponent } from './components/home/home.component';
 import { RepositoryComponent } from './components/repository/repository.component';
 import { AuthenticationService } from './core/services/authentication.service';
 import { ConfigurationService } from './core/services/configuration.service';
-import { RepositoryNookAPIService } from './core/services/repository-nook-api.service';
+import { APIRepositoryNookService } from './core/services/api-repository-nook.service';
 import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
@@ -63,7 +63,7 @@ import { SearchComponent } from './components/search/search.component';
   providers: [
     AuthenticationService,
     ConfigurationService,
-    RepositoryNookAPIService
+    APIRepositoryNookService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { RepositoryNookAPIService } from '../../core/services/repository-nook-api.service';
+import { APIRepositoryNookService } from '../../core/services/api-repository-nook.service';
 import { ConfigurationService} from '../../core/services/configuration.service';
-import { IRepository } from '../../core/models/api/repository'
+import { Repository } from '../../core/models/api/repository'
 import { ConfigurationModel } from 'src/app/core/models/configuration.model';
 
 @Component({
@@ -13,18 +13,18 @@ export class SearchComponent implements OnInit {
 
   repositorySetting: string;
 
-  constructor(public configSvc:ConfigurationService, public api:RepositoryNookAPIService) {
-      this.repositorySetting = configSvc.settings.database + "/" + configSvc.settings.collection;
+  constructor(public configSvc: ConfigurationService, public api: APIRepositoryNookService) {
+      this.repositorySetting = configSvc.settings.database + '/' + configSvc.settings.collection;
    }
 
-  repositoryItems: IRepository[];
+  repositoryItems: Repository[];
+  displayColumns = ['_id', 'keyName', 'keyValue'];
 
   ngOnInit() {
   }
   onSearchClick() {
-    
-    this.api.GetAll()
-      .subscribe((returnObjects: IRepository[]) => {
+      this.api.GetAll()
+      .subscribe((returnObjects: Repository[]) => {
         this.repositoryItems = returnObjects;
       });
   }

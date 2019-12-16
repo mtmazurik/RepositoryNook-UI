@@ -2,7 +2,7 @@ export class NameValuePair {
     name: string;
     value: string;
 }
-export interface IRepository {
+export class Repository {
     _id: string;
     keyName: string;
     keyValue: string;

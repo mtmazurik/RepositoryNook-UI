@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ConfigurationModel } from '../../core/models/configuration.model';
 import { ConfigurationService } from '../../core/services/configuration.service';
-import { RepositoryNookAPIService } from 'src/app/core/services/repository-nook-api.service';
+import { APIRepositoryNookService } from 'src/app/core/services/api-repository-nook.service';
 
 @Component({
     templateUrl: './configuration.component.html',
@@ -12,7 +12,7 @@ export class ConfigComponent implements OnInit {
 
     settings: ConfigurationModel;
 
-    constructor(public configSvc: ConfigurationService, public repositoryNook: RepositoryNookAPIService) { } 
+    constructor(public configSvc: ConfigurationService, public repositoryNook: APIRepositoryNookService) { } 
 
     ngOnInit(): void {
         this.settings = this.configSvc.settings;
