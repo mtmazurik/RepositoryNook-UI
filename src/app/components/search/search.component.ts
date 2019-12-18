@@ -18,7 +18,7 @@ export class SearchComponent implements OnInit {
    }
 
   repositoryItems: Repository[];
-  displayColumns = ['_id', 'keyName', 'keyValue'];
+  displayColumns = ['_id', 'key', 'data'];
 
   ngOnInit() {
   }

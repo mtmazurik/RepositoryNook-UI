@@ -4,9 +4,8 @@ export class NameValuePair {
 }
 export class Repository {
     _id: string;
-    keyName: string;
-    keyValue: string;
-    tags: NameValuePair[];
+    key: string;
+    tags: string[];
     createdDate: string;
     createdBy: string;
     modifiedDate: string;

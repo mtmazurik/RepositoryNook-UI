@@ -24,7 +24,7 @@ export class APIRepositoryNookService {
   repositoryItems: Repository[];
 
   GetAll() : Observable<Repository[]> {
-    let uri: string= this.baseURI() + "/" + this.config.settings.database + "/" + this.config.settings.collection + "/repository"; // GET all repository objects given database/collection
+    let uri: string= this.baseURI() + "/" + this.config.settings.database + "/" + this.config.settings.collection; 
     this.repositoryItems = [];
     this.httpClient
     .get(uri, { responseType: 'text', 
@@ -33,31 +33,11 @@ export class APIRepositoryNookService {
     })
     .subscribe( body => {
                   this.response = JSON.parse(body) as Response;
-                  for(var i=0; i < 10 ; i++) { // this.response.data.length
-                    var repoItem: Repository =  { _id: "xxxxx-xxxxxx"
-                                                  , keyName: "keyName"
-                                                  , keyValue: "keyValue"
-                                                  , tags: [{ "name": "", "value": ""}]
-                                                  , createdDate: ""
-                                                  , createdBy: ""
-                                                  , modifiedDate: ""
-                                                  , modifiedBy: ""
-                                                  , app: ""
-                                                  , repository: ""
-                                                  , collection: ""
-                                                  , validate: false
-                                                  , schemaUri: ""
-                                                  , data: ""
-                                                 } };
-                    // repoItem._id = this.response.data[i]["_id"];
-                    // this.notify.open(this.response.data[i]["_id"], "info", 10000);
-                    // i = this.response.data.length; //exit for loop
-                    // repoItem.keyName = this.response.data[i]["keyName"];
-                    // repoItem.keyValue = this.response.data[i]["keyValue"];
-
-                    this.repositoryItems.push( repoItem );
-                  },
-                  error => this.notify.open('GET all repository items failed. Check settings and retry.', 'error')
+                  for(var i=0; i < this.response.data.length ; i++) {  
+                    let repoString = JSON.stringify(this.response.data[i]);
+                    this.repositoryItems.push( JSON.parse(repoString) as Repository );
+                  }
+                }
               );
     const repositoryItemsObservable = new Observable<Repository[]>(observer => {
         setTimeout(() => {

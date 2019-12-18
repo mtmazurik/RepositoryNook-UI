@@ -22,7 +22,7 @@ export class AuthenticationService {
   userProfile: any;
 
   constructor(public router: Router, private http: HttpClient, public notify: NotificationService) {
-    this._authToken = '';
+    this._authToken = this.refreshToken();
     this._expiresAt = 0;
   }
 
@@ -30,7 +30,8 @@ export class AuthenticationService {
     return this._authToken;
   }
 
-  private auth0Response : Auth0ResponseModel = null;
+  private auth0Response: Auth0ResponseModel = null;
+
   public refreshToken(): string {
       let uri:string = 'https://cloudcomputingassociates.auth0.com/oauth/token';   
       this.http

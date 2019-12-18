@@ -10,12 +10,12 @@ import { APIRepositoryNookService } from 'src/app/core/services/api-repository-n
 })
 export class ConfigComponent implements OnInit {
 
-    settings: ConfigurationModel;
+    configuration: ConfigurationModel;
 
     constructor(public configSvc: ConfigurationService, public repositoryNook: APIRepositoryNookService) { } 
 
     ngOnInit(): void {
-        this.settings = this.configSvc.settings;
+        this.configuration = this.configSvc.settings;
     }
 
     onPingClick() { 
@@ -26,6 +26,6 @@ export class ConfigComponent implements OnInit {
     }
 
     onChange() {
-        this.configSvc.settings = this.settings;
+        this.configSvc.settings = this.configuration;
     }
 } 

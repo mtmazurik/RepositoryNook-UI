@@ -1,9 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\e2e",
-    "\\src"
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\components",
+    "\\src\\app\\components\\configuration",
+    "\\src\\app\\components\\search",
+    "\\src\\app\\core",
+    "\\src\\app\\core\\models",
+    "\\src\\app\\core\\models\\api",
+    "\\src\\app\\core\\services"
   ],
-  "SelectedNode": "\\package.json",
+  "SelectedNode": "\\src\\app\\core\\services\\api-repository-nook.service.ts",
   "PreviewInSolutionExplorer": false
 }
