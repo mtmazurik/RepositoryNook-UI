@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatFormFieldModule, MatInputModule, MatSnackBarModule } from '@angular/material';
 import { MatSelectModule } from '@angular/material';
 import { MatTableModule } from '@angular/material';
+import { MatCheckboxModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppComponent } from './app.component';
 import { ConfigComponent } from './components/configuration/configuration.component';
@@ -16,6 +17,7 @@ import { AuthenticationService } from './core/services/authentication.service';
 import { ConfigurationService } from './core/services/configuration.service';
 import { APIRepositoryNookService } from './core/services/api-repository-nook.service';
 import { SearchComponent } from './components/search/search.component';
+import { DocumentComponent } from './components/document/document.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { SearchComponent } from './components/search/search.component';
     HomeComponent,
     ConfigComponent,
     RepositoryComponent,
-    SearchComponent
+    SearchComponent,
+    DocumentComponent
   ],
   imports: [
     AppRoutingModule,
@@ -43,7 +46,8 @@ import { SearchComponent } from './components/search/search.component';
     MatInputModule,
     MatSnackBarModule,
     MatSelectModule,
-    MatTableModule
+    MatTableModule,
+    MatCheckboxModule
   ],
   exports: [
     MatButtonModule,
@@ -57,7 +61,8 @@ import { SearchComponent } from './components/search/search.component';
     MatInputModule,
     MatSnackBarModule,
     MatSelectModule,
-    MatTableModule 
+    MatTableModule,
+    MatCheckboxModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA], // CUSTOM_ELEMENTS_SCHEMA allows the templateUrl to work
   providers: [

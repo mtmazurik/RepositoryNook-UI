@@ -4,6 +4,7 @@ import { ConfigComponent } from './components/configuration/configuration.compon
 import { HomeComponent } from './components/home/home.component';
 import { RepositoryComponent } from './components/repository/repository.component';
 import { SearchComponent } from './components/search/search.component';
+import { DocumentComponent } from './components/document/document.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'config', component: ConfigComponent },
   { path: 'repository', component: RepositoryComponent },
   { path: 'search', component: SearchComponent },
+  { path: 'document', component: DocumentComponent },
   { path: '**', redirectTo: ''}
 ];
 
