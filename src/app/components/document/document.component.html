@@ -4,11 +4,11 @@
             <mat-card-title>Document</mat-card-title>
         </mat-card-header>
         <mat-card-actions align="right">
-            <button mat-raised-button (click)="onDocumentSave()">Save</button>
+            <button mat-raised-button (click)="onSaveClick()">Save</button>
         </mat-card-actions>
       <div fxLayout="column" fxLayoutGap="14px grid">
           <mat-form-field fxFlex="100" appearance="legacy">
-            <input matInput id="_id" placeholder="_id" [(ngModel)]="_id">
+            <input matInput id="id" placeholder="id" [(ngModel)]="id">
             <mat-hint>(optional)</mat-hint>
           </mat-form-field>
           <mat-form-field fxFlex="100" appearance="legacy">

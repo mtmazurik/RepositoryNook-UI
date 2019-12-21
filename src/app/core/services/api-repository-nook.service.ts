@@ -21,8 +21,31 @@ export class APIRepositoryNookService {
   response:Response;
   databases:Database[];
   collections: Collection[];
+
   repositoryItems: Repository[];
 
+  CreateNew(repository:Repository) : Promise<Repository> {
+    let uri: string = this.baseURI() + "/" + this.config.settings.database + "/" + this.config.settings.collection;
+    let reqBody = JSON.stringify(repository);
+
+    let promise = new Promise<Repository>((resolve, reject) => {
+     this.httpClient
+            .post(uri, reqBody,
+                          { 
+                            responseType: 'text', 
+                            headers: new HttpHeaders()
+                                .set("Authorization", `Bearer ${this.auth.token}`)
+                                .set("Content-Type", "application/json")                 
+                            })
+            .toPromise()
+            .then( res => {
+                      let response = JSON.parse(res) as Response;
+                      let repository = JSON.parse(JSON.stringify(response.data)) as Repository;
+                      resolve(repository);
+            });
+      });
+      return promise;
+  }
   GetAll() : Observable<Repository[]> {
     let uri: string= this.baseURI() + "/" + this.config.settings.database + "/" + this.config.settings.collection; 
     this.repositoryItems = [];
@@ -70,7 +93,6 @@ export class APIRepositoryNookService {
     });
     return databasesObservable;
   }
-
   GetCollections() : Observable<any> {
     let uri: string = this.baseURI() + "/" + this.config.settings.database;
     this.collections = [];
