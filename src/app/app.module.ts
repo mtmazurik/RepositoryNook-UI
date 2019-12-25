@@ -16,8 +16,9 @@ import { RepositoryComponent } from './components/repository/repository.componen
 import { AuthenticationService } from './core/services/authentication.service';
 import { ConfigurationService } from './core/services/configuration.service';
 import { APIRepositoryNookService } from './core/services/api-repository-nook.service';
-import { SearchComponent } from './components/search/search.component';
-import { DocumentComponent } from './components/document/document.component';
+import { SearchComponent } from './components/subcomponents/search/search.component';
+import { DocumentComponent } from './components/subcomponents/document/document.component';
+import { DocumentsComponent } from './components/documents/documents.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { DocumentComponent } from './components/document/document.component';
     ConfigComponent,
     RepositoryComponent,
     SearchComponent,
-    DocumentComponent
+    DocumentComponent,
+    DocumentsComponent
   ],
   imports: [
     AppRoutingModule,

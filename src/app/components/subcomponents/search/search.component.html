@@ -1,0 +1,31 @@
+<div fxLayout="row wrap" fxLayoutAlign="start start">
+  <mat-card >
+      <mat-card-header>
+          <mat-card-title>Search</mat-card-title>
+          <mat-card-subtitle>Repository: {{repositorySetting}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+          <div fxLayout="column" fxLayoutAligh="start start">
+            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="14px grid">
+                <mat-form-field fxFlex="100" >
+                    <input matInput id="filter" placeholder="Filter   (* default)" >
+                </mat-form-field>
+                <mat-card-actions align="right">
+                  <button mat-raised-button (click)="onSearchClick()">Search</button>
+                </mat-card-actions>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start start">
+                <mat-table [dataSource]="repositoryItems" class="mat-elevation-z8" >
+                  <ng-container matColumnDef="documents">
+                    <mat-header-cell *matHeaderCellDef ></mat-header-cell>>
+                    <mat-cell *matCellDef="let repositoryItem" > {{ repositoryItem | json }} </mat-cell>
+                  </ng-container>
+                  <mat-header-row *matHeaderRowDef="documentsColumn" style="height:0; display: none;"></mat-header-row>
+                  <mat-row *matRowDef="let row; columns: documentsColumn;" ></mat-row>> 
+                </mat-table>
+            </div>
+          </div>
+      </mat-card-content>
+  </mat-card>
+</div>
+

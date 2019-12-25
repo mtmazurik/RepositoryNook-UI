@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { APIRepositoryNookService } from '../../core/services/api-repository-nook.service';
-import { ConfigurationService } from '../../core/services/configuration.service';
+import { APIRepositoryNookService } from '../../../core/services/api-repository-nook.service';
+import { ConfigurationService } from '../../../core/services/configuration.service';
 import { ConfigurationModel } from 'src/app/core/models/configuration.model';
-import { Repository } from '../../core/models/api/repository';
+import { Repository } from '../../../core/models/api/repository';
 
 @Component({
   selector: 'app-document',
