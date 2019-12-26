@@ -17,10 +17,10 @@
             <div fxLayout="row" fxLayoutAlign="start start">
                 <mat-table [dataSource]="repositoryItems" class="mat-elevation-z8" >
                   <ng-container matColumnDef="documents">
-                    <mat-header-cell *matHeaderCellDef ></mat-header-cell>>
+                    <mat-header-cell *matHeaderCellDef  ></mat-header-cell>>
                     <mat-cell *matCellDef="let repositoryItem" > {{ repositoryItem | json }} </mat-cell>
                   </ng-container>
-                  <mat-header-row *matHeaderRowDef="documentsColumn" style="height:0; display: none;"></mat-header-row>
+                  <mat-header-row *matHeaderRowDef="documentsColumn" style="display: none;"></mat-header-row>
                   <mat-row *matRowDef="let row; columns: documentsColumn;" ></mat-row>> 
                 </mat-table>
             </div>
