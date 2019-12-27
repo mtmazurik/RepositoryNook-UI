@@ -29,4 +29,10 @@ export class SearchComponent implements OnInit {
         this.repositoryItems = returnObjects;
       });
   }
+
+  selectedRowIndex: number = -1;
+
+  highlight(row) {
+    this.selectedRowIndex = row._id;
+  }
 }

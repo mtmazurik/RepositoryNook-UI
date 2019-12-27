@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-documents',
@@ -7,9 +8,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DocumentsComponent implements OnInit {
 
-  constructor() { }
+
+  currentNavButton: string;
+
+  constructor(private route:ActivatedRoute, public router: Router) { }
 
   ngOnInit() {
   }
 
+  OnDocumentsNavClick(navRoute: string) {
+    switch( navRoute ) {
+      case "new":
+        this.router.navigate(['document'], {relativeTo: this.route});
+        this.currentNavButton = "new";
+        break;
+      case "search":
+        this.router.navigate(['search'], {relativeTo: this.route});
+        this.currentNavButton = "search";
+        break;
+      case "edit":
+        this.router.navigate(['document'], {relativeTo: this.route});
+        this.currentNavButton = "edit";
+        break;
+    }
+  }
 }

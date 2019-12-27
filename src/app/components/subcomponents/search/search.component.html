@@ -20,8 +20,11 @@
                     <mat-header-cell *matHeaderCellDef  ></mat-header-cell>>
                     <mat-cell *matCellDef="let repositoryItem" > {{ repositoryItem | json }} </mat-cell>
                   </ng-container>
-                  <mat-header-row *matHeaderRowDef="documentsColumn" style="display: none;"></mat-header-row>
-                  <mat-row *matRowDef="let row; columns: documentsColumn;" ></mat-row>> 
+                  <mat-header-row *matHeaderRowDef="documentsColumn;  sticky: true" style="display: none;"></mat-header-row>
+                  <mat-row *matRowDef="let row; columns: documentsColumn;" 
+                          [ngClass]="{'highlight': selectedRowIndex == row._id}"
+                          (click)="highlight(row)">     
+                  </mat-row>> 
                 </mat-table>
             </div>
           </div>

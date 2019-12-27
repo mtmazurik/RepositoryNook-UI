@@ -1,18 +1,11 @@
-<div class=document-components-div>
-    <mat-card>
-        <mat-card-header>
-            <mat-card-title>Documents</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-            <div fxLayout="row" fxLayoutGap="14px grid">
-                <mat-card-actions align="left">
-                  <button mat-raised-button (click)="onSearchClick()">New</button>
-                </mat-card-actions>
-            </div>
-            <div name=documents-display-area>
-                <app-search></app-search>
-            </div>
-        </mat-card-content>
-    </mat-card>
+<div class=documents>
+    <mat-toolbar color="primary" >
+            <span class="gap"><button  color="primary" mat-raised-button (click)="OnDocumentsNavClick('search')">Search</button></span>
+            <span class="gap"><button  color="primary" mat-raised-button (click)="OnDocumentsNavClick('new')">New</button></span>
+            <span class="gap"><button  color="primary" mat-raised-button (click)="OnDocumentsNavClick('edit')">Edit</button></span>
+    </mat-toolbar>
+    <div name=documents-display-area>
+        <router-outlet></router-outlet>
+    </div>       
 </div>
 

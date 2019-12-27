@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { APIRepositoryNookService } from '../../../core/services/api-repository-nook.service';
 import { ConfigurationService } from '../../../core/services/configuration.service';
 import { ConfigurationModel } from 'src/app/core/models/configuration.model';
 import { Repository } from '../../../core/models/api/repository';
+import { Router } from '@angular/router'
+
 
 @Component({
   selector: 'app-document',
@@ -10,7 +12,7 @@ import { Repository } from '../../../core/models/api/repository';
   styleUrls: ['./document.component.scss']
 })
 export class DocumentComponent implements OnInit {
-
+  @Output() OnEditInProgressChange = new EventEmitter();
 
   settings: ConfigurationModel;
 
@@ -25,7 +27,7 @@ export class DocumentComponent implements OnInit {
 
   returnRepositoryObject: Repository;
 
-  constructor(public configSvc:ConfigurationService, public api: APIRepositoryNookService ) { 
+  constructor(public configSvc:ConfigurationService, public api: APIRepositoryNookService, private router: Router ) { 
     this.settings = this.configSvc.settings;
   }
 
@@ -48,6 +50,7 @@ export class DocumentComponent implements OnInit {
 
     let returnRepo = this.api.CreateNew(repositoryObject);    // calling with a Promise (instead of observable)
     returnRepo.then( repo => this.id = repo._id);             // update display with inserted guid
+
   }
   
 }
