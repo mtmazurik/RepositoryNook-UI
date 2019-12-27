@@ -27,11 +27,13 @@ export class DocumentComponent implements OnInit {
 
   returnRepositoryObject: Repository;
 
+  validationEnabled = false;
+
   constructor(public configSvc:ConfigurationService, public api: APIRepositoryNookService, private router: Router ) { 
     this.settings = this.configSvc.settings;
   }
 
-
+  
   ngOnInit() {
     this.database = this.settings.database;
     this.collection = this.settings.collection;

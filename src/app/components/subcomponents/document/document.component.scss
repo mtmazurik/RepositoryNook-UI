@@ -1,0 +1,36 @@
+ .switch[type=checkbox] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    position: relative;
+    width: 30px;
+    height: 16px;
+    background-color:  #3F51B5;
+    border-radius: 16px;
+  }
+  
+  .switch[type=checkbox]::after {
+    content: '';
+    position: absolute;
+    background: #FFF;
+    transition: all .2s ease-in-out;
+    border-radius: 7px;
+    width: 14px;
+    height: 14px;
+    margin: 1px;
+  }
+  
+  .switch[type=checkbox]:checked::after {
+    transform: translateX(14px);
+  }
+mat-button-toggle {
+    background-color: #3F51B5; // indigo primary
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding-bottom: 0.714em !important;
+    padding-top: 0.714em !important;
+    text-align: center;
+    display: inline-block;
+    vertical-align: middle;
+}
