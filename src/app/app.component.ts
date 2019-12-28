@@ -14,16 +14,16 @@ export class AppComponent implements OnInit {
   ]
 
   moreEllipsisItems: any[] = [
-    { path: '/config' }
+    { path: '/config' },
+    { path: '/help' }
   ]
 
   events: string[] = [];
   opened: boolean;
 
-
   constructor() {
   }
 
   ngOnInit() {
-    }
+  }
 }

@@ -27,7 +27,7 @@ export class DocumentComponent implements OnInit {
 
   returnRepositoryObject: Repository;
 
-  validationEnabled = false;
+  validateEnabled = false;
 
   constructor(public configSvc:ConfigurationService, public api: APIRepositoryNookService, private router: Router ) { 
     this.settings = this.configSvc.settings;
@@ -41,13 +41,13 @@ export class DocumentComponent implements OnInit {
 
   onSaveClick() {
     let repositoryObject = new Repository();
-      repositoryObject._id=this.id;
+      repositoryObject._id= (this.id === "") ? null : this.id;
       repositoryObject.key = this.key;
       repositoryObject.app = this.app; 
       repositoryObject.repository = this.database;
       repositoryObject.collection = this.collection;
-      repositoryObject.validate = this.validate.match(/^(true|yes|t|y|1)$/i) ? true : false;
-      repositoryObject.schemaUri = this.schemaURI;
+      repositoryObject.validate = (this.validateEnabled) ? true : false;
+      repositoryObject.schemaUri = (this.schemaURI) ? this.schemaURI : "";
       repositoryObject.data = this.innerData;
 
     let returnRepo = this.api.CreateNew(repositoryObject);    // calling with a Promise (instead of observable)

@@ -42,6 +42,10 @@ export class APIRepositoryNookService {
                       let response = JSON.parse(res) as Response;
                       let repository = JSON.parse(JSON.stringify(response.data)) as Repository;
                       resolve(repository);
+                      this.notify.open('Created: '.concat(repository._id.toString()), 'info', 3)
+            })
+            .catch((error) => {
+                this.notify.open('Create error: '.concat(error), 'error', 3)
             });
       });
       return promise;

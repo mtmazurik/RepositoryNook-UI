@@ -1,36 +1,35 @@
- .switch[type=checkbox] {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    position: relative;
-    width: 30px;
-    height: 16px;
-    background-color:  #3F51B5;
-    border-radius: 16px;
-  }
-  
-  .switch[type=checkbox]::after {
-    content: '';
-    position: absolute;
-    background: #FFF;
-    transition: all .2s ease-in-out;
-    border-radius: 7px;
-    width: 14px;
-    height: 14px;
-    margin: 1px;
-  }
-  
-  .switch[type=checkbox]:checked::after {
-    transform: translateX(14px);
-  }
-mat-button-toggle {
-    background-color: #3F51B5; // indigo primary
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding-bottom: 0.714em !important;
-    padding-top: 0.714em !important;
-    text-align: center;
-    display: inline-block;
-    vertical-align: middle;
+// these three .switch are for the slider toggle transformation of a regular checkbox (see above SchemaURI )
+.switch[type=checkbox] {
+-webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
+position: relative;
+width: 30px;
+height: 16px;
+background-color:  #3F51B5;
+border-radius: 16px;
+}
+.switch[type=checkbox]::after {
+content: '';
+position: absolute;
+background: #FFF;
+transition: all .2s ease-in-out;
+border-radius: 7px;
+width: 14px;
+height: 14px;
+margin: 1px;
+}
+.switch[type=checkbox]:checked::after {
+transform: translateX(14px);
+}
+#document-save-btn {
+    position: absolute; 
+    right: 10px;
+}
+
+#document-form-display-area {
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column-reverse;
+    flex-flow: column nowrap;
 }

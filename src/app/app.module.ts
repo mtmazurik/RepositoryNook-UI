@@ -19,6 +19,7 @@ import { APIRepositoryNookService } from './core/services/api-repository-nook.se
 import { SearchComponent } from './components/subcomponents/search/search.component';
 import { DocumentComponent } from './components/subcomponents/document/document.component';
 import { DocumentsComponent } from './components/documents/documents.component';
+import { HelpComponent } from './components/help/help.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { DocumentsComponent } from './components/documents/documents.component';
     RepositoryComponent,
     SearchComponent,
     DocumentComponent,
-    DocumentsComponent
+    DocumentsComponent,
+    HelpComponent
   ],
   imports: [
     AppRoutingModule,

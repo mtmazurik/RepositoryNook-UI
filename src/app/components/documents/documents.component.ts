@@ -14,6 +14,7 @@ export class DocumentsComponent implements OnInit {
   constructor(private route:ActivatedRoute, public router: Router) { }
 
   ngOnInit() {
+    this.OnDocumentsNavClick('search'); // start with search screen showing
   }
 
   OnDocumentsNavClick(navRoute: string) {
