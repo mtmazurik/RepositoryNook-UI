@@ -1,7 +1,7 @@
 <div fxLayout="row wrap" fxLayoutAlign="start start">
   <mat-card >
       <mat-card-header>
-          <mat-card-title>Search</mat-card-title>
+          <mat-card-title>Find documents</mat-card-title>
           <mat-card-subtitle>Repository: {{repositorySetting}}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
@@ -11,7 +11,7 @@
                     <input matInput id="filter" placeholder="Filter   (* default)" >
                 </mat-form-field>
                 <mat-card-actions align="right">
-                  <button mat-raised-button (click)="onSearchClick()">Search</button>
+                  <button mat-raised-button color="primary" (click)="onSearchClick()">Search</button>
                 </mat-card-actions>
             </div>
             <div fxLayout="row" fxLayoutAlign="start start">
