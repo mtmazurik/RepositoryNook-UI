@@ -20,5 +20,5 @@ RUN npm install -g @angular/cli@8.3.2
 # add app
 COPY . /app
 EXPOSE 4200
-# start app
-CMD ng serve --host 0.0.0.0
+# start app           # or  --public-host http://35.203.157.155
+CMD ng serve --host 0.0.0.0 --disable-host-check 
