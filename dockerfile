@@ -1,4 +1,6 @@
-# base image
+# TODO: rework using info from this blogpost: optimized ng \dist running with nginx:
+#  https://dev.to/avatsaev/create-efficient-angular-docker-images-with-multi-stage-builds-1f3n
+#base image
 FROM node:12.2.0
 
 # install chrome for protractor tests
