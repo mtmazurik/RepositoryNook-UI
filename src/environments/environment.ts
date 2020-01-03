@@ -6,14 +6,14 @@ import { DBConnection } from 'auth0-js';
 
 export const environment = {
   production: false,
-  serviceAddress: "http://localhost",
-  servicePort: 8902,
+  serviceAddress: "http://reponook-svc.cloudcomputingassociates.net",
+  servicePort: 80,
   auth0ClientId: "Tl3SnziPkp4qRjRuajZWfrAeMn6Dxwr6",
   auth0ClientSecret: "Ep36WseJFCSnU5IsMdDxJh_JKyhlyKDfw0_epmihC4JroW1SvVtvDa9BHuwDGPMJ",
   auth0Audience: "endpoint-security.containernooks.com",
   auth0GrantType: "client_credentials",
-  database: "flight-db",
-  collection: "flights"
+  database: "public",
+  collection: "testdata"
 };
 
 /*
