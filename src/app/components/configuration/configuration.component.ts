@@ -14,6 +14,8 @@ export class ConfigComponent implements OnInit {
 
     constructor(public configSvc: ConfigurationService, public repositoryNook: APIRepositoryNookService) { } 
 
+    hideSensitiveInfo = true;
+
     ngOnInit(): void {
         this.configuration = this.configSvc.settings;
     }

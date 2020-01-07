@@ -1,28 +1,32 @@
 # Angular Docker Image; Multi-stage build courtesy of:
-#  https://dev.to/avatsaev/create-efficient-angular-docker-images-with-multi-stage-builds-1f3n
+#  https://mherman.org/blog/dockerizing-an-angular-app/
 ### STAGE 1: Build ###
 
 # We label our stage as ‘builder’
-FROM node:10-alpine as builder
-
-COPY package.json package-lock.json ./
+FROM node:12.2.0 as build
 
 ## Storing node modules on a separate layer will prevent unnecessary npm installs at each build
 
-RUN npm ci && mkdir /ng-app && mv ./node_modules ./ng-app
+WORKDIR /app
 
-WORKDIR /ng-app
+ENV PATH /app/node_modules/.bin:$PATH
 
-COPY . .
+COPY package.json /app/package.json
+COPY package-lock.json /app/package-lock.json
+
+RUN npm install
+RUN npm install -g @angular/cli@8.3.2
+
+COPY . /app
 
 ## Build the angular app in production mode and store the artifacts in dist folder
 
-RUN npm run ng build -- --prod --output-path=dist
+RUN  ng build --prod --output-path=dist
 
 
 ### STAGE 2: Setup ###
 
-FROM nginx:1.14.1-alpine
+FROM nginx:1.17-alpine
 
 ## Copy our default nginx config
 COPY nginx/default.conf /etc/nginx/conf.d/
@@ -31,6 +35,8 @@ COPY nginx/default.conf /etc/nginx/conf.d/
 RUN rm -rf /usr/share/nginx/html/*
 
 ## From ‘builder’ stage copy over the artifacts in dist folder to default nginx public folder
-COPY --from=builder /ng-app/dist /usr/share/nginx/html
+COPY --from=build /app/dist /usr/share/nginx/html
+
+EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]

@@ -25,14 +25,14 @@ export class ConfigurationService {
   public loadSettings()
   {
     this._configurationSettings = {  // assign initial config settings from environments/environment.ts file
-      serviceAddress: environment.serviceAddress,
-      servicePort: environment.servicePort,
-      auth0ClientId: environment.auth0ClientId,
-      auth0ClientSecret: environment.auth0ClientSecret,
-      auth0Audience: environment.auth0Audience,
-      auth0GrantType: environment.auth0GrantType,
-      database: environment.database, 
-      collection: environment.collection
+      serviceAddress: "http://reponook-svc.cloudcomputingassociates.net",
+      servicePort: 80,
+      auth0ClientId: "Tl3SnziPkp4qRjRuajZWfrAeMn6Dxwr6",
+      auth0ClientSecret: "Ep36WseJFCSnU5IsMdDxJh_JKyhlyKDfw0_epmihC4JroW1SvVtvDa9BHuwDGPMJ",
+      auth0Audience: "endpoint-security.containernooks.com",
+      auth0GrantType: "client_credentials",
+      database: "public", 
+      collection: "testdata"
     };
   }
 }
