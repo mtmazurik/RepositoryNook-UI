@@ -14,14 +14,14 @@
             </div>
             <div fxLayout="row" fxLayoutGap="14px grid">
                 <mat-form-field fxFlex="100">
-                    <input matInput placeholder="Auth0 Client Id" [type]="hideSensitiveInfo ? 'text' : 'password'" [(ngModel)]="configuration.auth0ClientId" (change)="onChange()" >
-                    <mat-icon matSuffix (click)="hideSensitiveInfo = !hideSensitiveInfo">{{hideSensitiveInfo ? 'true' : 'false'}}</mat-icon>
+                    <input matInput placeholder="Auth0 Client Id" [type]="hide ? 'text' : 'password'" [(ngModel)]="configuration.auth0ClientId" (change)="onChange()" >
+                    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </mat-form-field>
             </div>
             <div fxLayout="row" fxLayoutGap="14px grid">
                 <mat-form-field fxFlex="100">
-                    <input matInput placeholder="Auth0 Client Secret" [type]="hideSensitiveInfo ? 'text' : 'password'" [(ngModel)]="configuration.auth0ClientSecret" (change)="onChange()" >
-                    <mat-icon matSuffix (click)="hideSensitiveInfo = !hideSensitiveInfo">{{hideSensitiveInfo ? 'true' : 'false'}}</mat-icon>
+                    <input matInput placeholder="Auth0 Client Secret" [type]="hide ? 'text' : 'password'" [(ngModel)]="configuration.auth0ClientSecret" (change)="onChange()" >
+                    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </mat-form-field>
             </div>
             <div fxLayout="row" fxLayoutGap="14px grid">
