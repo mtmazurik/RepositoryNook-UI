@@ -16,27 +16,29 @@ export class RepositoryComponent implements OnInit {
   collections: Collection[];
   settings: ConfigurationModel;
 
-  constructor(public configSvc:ConfigurationService, public api:APIRepositoryNookService) { 
+  constructor( public configSvc:ConfigurationService, public api:APIRepositoryNookService) { 
   }
 
   ngOnInit() {
+    
     this.settings = this.configSvc.settings;
-    this.api.GetDatabases()
-      .subscribe((returnDatabases: Database[]) => {
-        this.databases = returnDatabases;
-       });
-    this.api.GetCollections()
-      .subscribe((collections: Collection[]) => {
-        this.collections = collections;
-       });
+
+    this.api.GetDatabases().subscribe(
+          (returnDatabases: Database[]) => { this.databases = returnDatabases; }
+        );
+    
+    this.api.GetCollections().subscribe(
+          (collections: Collection[]) => { this.collections = collections; }
+        );
   }
 
   onChangeDatabaseSelection() {
+    
     this.configSvc.settings = this.settings;
     this.collections = null;
-    this.api.GetCollections()
-      .subscribe((collections: Collection[]) => {
-        this.collections = collections;
-      });
+
+    this.api.GetCollections().subscribe(
+          (collections: Collection[]) => { this.collections = collections; }
+        );
   }
 }
