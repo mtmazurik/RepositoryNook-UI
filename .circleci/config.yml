@@ -6,7 +6,7 @@ jobs:
     machine: true
     steps:
         - checkout
-        - run: docker build --rm=false -f ./Dockerfile -t gcr.io/${GOOGLE_PROJECT_ID}/reponook-ui:latest .
+        - run: docker build --rm=false -t gcr.io/${GOOGLE_PROJECT_ID}/reponook-ui:latest .
         - run: echo ${GCLOUD_SERVICE_KEY} > ${HOME}/gcp-key.json
         - run: docker login -u _json_key --password-stdin https://gcr.io < ${HOME}/gcp-key.json
         - run: docker push gcr.io/${GOOGLE_PROJECT_ID}/reponook-ui:latest
