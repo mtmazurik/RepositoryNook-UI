@@ -2,7 +2,7 @@ version: 2.1
 
 jobs:
   build:
-    description: "Build & Push image to GCR repository"
+    description: "Build and Push image to GCR repository"
     machine: true
     steps:
         - checkout
